@@ -54,8 +54,9 @@ fn handle_client(mut stream: TcpStream) {
     }
 
     match parse_http_request_robust(&mut stream) {
-        Ok(_request) => {
+        Ok(request) => {
             println!("Request from {}:\n ", client_addr);
+            println!("Request: {:?}", request);
             let response = "HTTP/1.1 200 OK\r\n\
                            Content-Type: text/plain\r\n\
                            Content-Length: 29\r\n\
